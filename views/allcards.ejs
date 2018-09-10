@@ -1,11 +1,11 @@
 <% include ./partials/header %>
 
-        <div class="container">
+<div class="container">
             <div class="jumbotron">
                 <h1>Robots Challenge</h1>
-                <p class="lead">This method uses JavaScript Conditions and jQuery Events to iterate through an array and either pick a random card or shuffle them. </p>
+                <p class="lead">This method uses Request API calls, Express Routing and JavaScript Functions to display the deck. </p>
                 <hr class="my-4">
-                <p id="clickAButton">Click a button, any button!</p>
+                <p id="clickAButton">Are these your cards?</p>
                     <div class="row" >
                         <div class="col-lg-4 col-sm-6 col-xs-6">
                             <a class="btn btn-lg btn-block" id="oneCard" href="/singlecard">Single Card</a>
@@ -13,16 +13,16 @@
                         <div class="col-lg-4 col-sm-6">
                         </div>
                         <div class="col-lg-4 col-sm-6 col-xs-6" id="multiple">
-                            <a class="btn btn-lg btn-block" id="allCards" href="/allcards">All the Cards</a>
+                            <a class="btn btn-lg btn-block" id="allCards" href="/allcards">Shuffle Cards</a>
                         </div>
                     </div>
+                    <!--location for cards-->
                     <div class="row multiple" id="secondRow">
-                        <div class="col-lg-4 col-sm-6">
-                        </div>
-                        <div class="col-lg-4 col-sm-6" id="single">
-                        </div>
-                        <div class="col-lg-4 col-sm-6">
-                        </div>
+                            <% data1["cards"].forEach(function(cards) { %>
+                                <div class="col-lg-4 col-sm-6 shuffledCards">
+                                <img src = "<%= cards["image"] %>" >
+                                </div>
+                            <% }); %>
                     </div>
             </div>
         </div>
