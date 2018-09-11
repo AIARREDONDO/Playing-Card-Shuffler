@@ -1,61 +1,70 @@
-var jQuery     = require('jquery');
-var $ = jQuery = require('jquery')(window);
+// var fs = require('fs');
+// var express = require('express');
+// var request = require("request");
 
-var cardsArr;
+// //requests a new deck of cards and writes it to deck.json
+// module.exports.createFile = function createFile(){
+//     var url = "https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=1";
+//     request(url, function(error, response, body){
+//         if(!error && response.statusCode === 200){
+//             var data = JSON.stringify(body, null, 2);
+//             var data1 = JSON.parse(data, null, 2);
+//             fs.writeFileSync('deck.json', data1);
+//         }
+//     });
+// }
 
-//create a global array
-function init(){
-    cardsArr = [
-    'cards/2.png',
-    'cards/3.png',
-    'cards/4.png',
-    'cards/5.png',
-    'cards/6.png',
-    'cards/7.png',
-    'cards/8.png',
-    'cards/9.png',
-    'cards/10.png',
-    'cards/J.png',
-    'cards/Q.png',
-    'cards/K.png',
-    'cards/A.png'
-    ];
-}
+// //reads deck.json and returns the new url with one card key parsed in
+// module.exports.deckId = function deckId(){
+//     module.exports.createFile;
+//     var data = fs.readFileSync('deck.json');
+//     var dataParsed = JSON.parse(data);
+//     var keys = dataParsed[Object.keys(dataParsed)[0]];
+//     var oneCard = "https://deckofcardsapi.com/api/deck/" + keys + "/draw/?count=1";
+//     return oneCard;
+// }
 
-//RANDOMLY RETURN ONE CARD
-function cardMath(){
-    var oneCard = cardsArr[(Math.random() * cardsArr.length)|0];
-    return oneCard;
-};
+// //reads deck.json and returns the new url with all 52 card key parsed in
+// module.exports.allCards = function allCards(){
+//     module.exports.createFile;
+//     var data = fs.readFileSync('deck.json');
+//     var dataParsed = JSON.parse(data);
+//     var keys = dataParsed[Object.keys(dataParsed)[0]];
+//     var allCards = "https://deckofcardsapi.com/api/deck/" + keys + "/draw/?count=52";
+//     return allCards;
+// }
 
-//remove any existing cards, then append the selected card
-function singleCard(){
-    $("#singleCard").remove();
-    $(".shuffledCards").remove();
-    $("#single").append($('<div id="singleCard"><img class="rounded" src="/' + cardMath() + '"/></div>').hide().fadeIn(750));
-}
+//----------------------------
+//If you want to generate the link on its own, without the need
+//to run a get request
 
-//SHUFFLE ALL CARDS
-function shuffleMath() {
-    var m = cardsArr.length, t, i;
-    //Fisher-Yates Shuffle
-    // While there remain elements to shuffle…
-    while (m) {
-        // Pick a remaining element…
-        i = Math.floor(Math.random() * m--);
-        // And swap it with the current element.
-        t = cardsArr[m];
-        cardsArr[m] = cardsArr[i];
-        cardsArr[i] = t;
-    }
-}
+// //requests the specific deck id to return the deck's cards
+// function singleCard(){
+//     // console.log("singleCard started")
+//     var oneCard = deckId();
+//     // console.log("This is the url " + oneCard);
+//     request(oneCard, function(error, response, body){
+//     if(!error && response.statusCode === 200){
+//             // console.log("This is body " + body);
+//             var data = JSON.stringify(body, null, 2);
+//             // console.log("This is data + " + data);
+//             var data1 = JSON.parse(data, null, 2);
+//             // console.log("This is data1" + data1)
+//             fs.writeFileSync('card.json', data1);
+//         }
+//     });
+// };
 
-//remove any existing cards then append each shuffled card
-function shuffleCards(){
-    shuffleMath();
-        $(".shuffledCards").remove();
-        $("#singleCard").remove();
-            cardsArr.forEach(function(cards){
-                $(".multiple").append($('<div class="col-lg-4 col-sm-6 col-xs-16 shuffledCards"><img class="rounded" src="/' + cards + '"/></div>').hide().fadeIn(750));
-    });
-}
+// //reads deck.json and returns the new url with the key parsed in
+// function cardImage(){
+//     singleCard();
+//     var data = fs.readFileSync('card.json');
+//     var dataParsed = JSON.parse(data);
+//     // console.log(dataParsed);
+//     var keys = dataParsed[Object.keys(dataParsed)[3]];
+//     // console.log(keys);
+//     var result = keys.map(a => a.image);
+//     // console.log("THIS IS RESULT " + result);
+//     return result;
+// }
+//------------------------------------
